@@ -1,0 +1,1 @@
+ad soyadına göre tanıdıklarınızın hangi hastanede olduklarını sorgulatacağınız bir web site yayınladı. kayıtları varsa tanıdıklarınızın hastane kaydını bulabiliyorsunuz, lütfen olabildiğince yayalım. https://pra.4lphasoftware.com/

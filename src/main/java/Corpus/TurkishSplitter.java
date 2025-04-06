@@ -41,6 +41,6 @@ public class TurkishSplitter extends SentenceSplitter {
                 "km", "yb", "bk", "jr", "bn", "os", "mrs", "bld", "sen", "alm",
                 "sir", "ord", "dir", "yay", "man", "brm", "edt", "dec", "mah", "cad",
                 "vol", "kom", "sok", "apt", "elk", "mad", "ort", "cap", "ste", "exc",
-                "ef"};
+                "ef", "sk"};
     }
 }

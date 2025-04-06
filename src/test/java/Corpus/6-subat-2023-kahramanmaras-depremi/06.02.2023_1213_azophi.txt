@@ -1,0 +1,1 @@
+dronelar ile depremin boyutunu göstermek gerekiyor. yakınlarının binalarını öğrenmiş olunur. veya hızlıca yıkım olan yerleri gösteren harita yayınlanmalı

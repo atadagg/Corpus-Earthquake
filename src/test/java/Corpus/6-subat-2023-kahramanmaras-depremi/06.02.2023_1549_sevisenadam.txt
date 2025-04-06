@@ -1,0 +1,1 @@
+deprem yardımlaşma başlığına çaylaklar girdi girebiliyor mu? eğer giremiyorlarsa mesaj atabilirler

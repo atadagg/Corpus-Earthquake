@@ -1,0 +1,1 @@
+ana depremin 1 değer altında kalırsa artçı sayılabilir. son deprem artçı değil.

@@ -348,24 +348,26 @@ public abstract class SentenceSplitter {
                 }
             } else {
                 if (contains(SENTENCE_ENDERS, line.charAt(i))) {
-                    if (line.charAt(i) == '.' && currentWord.equalsIgnoreCase("www")) {
-                        webMode = true;
-                    }
-                    if (line.charAt(i) == '.' && !currentWord.isEmpty() && (webMode || emailMode || (contains(Language.DIGITS, line.charAt(i - 1))) && !isNextCharUpperCaseOrDigit(line, i + 1))) {
+                    if (webMode) {
                         currentWord = currentWord + line.charAt(i);
-                        currentSentence.addWord(new Word(currentWord));
-                        currentWord = "";
                     } else {
-                        if (line.charAt(i) == '.' && (listContains(currentWord) || isNameShortcut(currentWord))) {
+                        if (line.charAt(i) == '.' && currentWord.equalsIgnoreCase("www")) {
+                            webMode = true;
+                        }
+                        if (line.charAt(i) == '.' && !currentWord.isEmpty() && (emailMode || (contains(Language.DIGITS, line.charAt(i - 1)) && !isNextCharUpperCaseOrDigit(line, i + 1)))) {
                             currentWord = currentWord + line.charAt(i);
                             currentSentence.addWord(new Word(currentWord));
                             currentWord = "";
                         } else {
-                            if (line.charAt(i) == '.' && numberExistsBeforeAndAfter(line, i)) {
+                            if (line.charAt(i) == '.' && (listContains(currentWord) || isNameShortcut(currentWord))) {
+                                currentWord = currentWord + line.charAt(i);
+                                currentSentence.addWord(new Word(currentWord));
+                                currentWord = "";
+                            } else if (line.charAt(i) == '.' && numberExistsBeforeAndAfter(line, i)) {
                                 currentWord = currentWord + line.charAt(i);
                             } else {
                                 if (!currentWord.isEmpty()) {
-                                    currentSentence.addWord(new Word(repeatControl(currentWord, webMode || emailMode)));
+                                    currentSentence.addWord(new Word(repeatControl(currentWord, emailMode)));
                                 }
                                 currentWord = "" + line.charAt(i);
                                 do {
@@ -374,22 +376,20 @@ public abstract class SentenceSplitter {
                                 i--;
                                 currentSentence.addWord(new Word(currentWord));
                                 if (roundParenthesisCount == 0 && bracketCount == 0 && curlyBracketCount == 0 && quotaCount == 0) {
-                                    if (i + 1 < line.length() && line.charAt(i + 1) == '\'' && apostropheCount == 1 && isNextCharUpperCaseOrDigit(line, i + 2)) {
+                                    if (i + 1 < line.length() && line.charAt(i + 1) == '\'' && apostropheCount == 1) {
                                         currentSentence.addWord(new Word("'"));
                                         i++;
                                         sentences.add(currentSentence);
                                         currentSentence = new Sentence();
                                     } else {
-                                        if (i + 2 < line.length() && line.charAt(i + 1) == ' ' && line.charAt(i + 2) == '\'' && apostropheCount == 1 && isNextCharUpperCaseOrDigit(line, i + 3)) {
+                                        if (i + 2 < line.length() && line.charAt(i + 1) == ' ' && line.charAt(i + 2) == '\'' && apostropheCount == 1) {
                                             currentSentence.addWord(new Word("'"));
                                             i += 2;
                                             sentences.add(currentSentence);
                                             currentSentence = new Sentence();
                                         } else {
-                                            if (isNextCharUpperCaseOrDigit(line, i + 1)) {
-                                                sentences.add(currentSentence);
-                                                currentSentence = new Sentence();
-                                            }
+                                            sentences.add(currentSentence);
+                                            currentSentence = new Sentence();
                                         }
                                     }
                                 }
@@ -430,7 +430,6 @@ public abstract class SentenceSplitter {
                                     webMode = true;
                                 }
                                 if (webMode) {
-                                    //Constructing web address. Web address can contain both punctuation and arithmetic characters
                                     currentWord = currentWord + line.charAt(i);
                                 } else {
                                     if (line.charAt(i) == ',' && numberExistsBeforeAndAfter(line, i)) {
@@ -453,7 +452,6 @@ public abstract class SentenceSplitter {
                                 }
                             } else {
                                 if (line.charAt(i) == '@') {
-                                    //Constructing e-mail address
                                     currentWord = currentWord + line.charAt(i);
                                     emailMode = true;
                                 } else {

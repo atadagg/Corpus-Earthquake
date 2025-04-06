@@ -1,0 +1,1 @@
+deprem bölgesindeyseniz aramaları ve mesajlaşmaları olabildiğince internet üzerinden yapmanızı tavsiye ederim, internette data kapasitesi arama ve sms'e göre daha geniş. mümkün olduğunca az data kullanın ki mevcut kapasite herkese yetebilsin, zorunda olmadıkça whatsapp mesajı vb. harici data tüketimi yapmayın.

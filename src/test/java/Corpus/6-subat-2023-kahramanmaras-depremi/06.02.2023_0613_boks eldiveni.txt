@@ -1,0 +1,1 @@
+deprem dolayısıyla hatlardaki yoğunluk nedeniyle 112 lere ulaşılamayan illerde enkaz altında kalma durumu varsa o ilin alan kodu 112 0000 a mesaj olarak adres iletilebilur.

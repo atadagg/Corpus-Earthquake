@@ -1,0 +1,1 @@
+neredeyim yazıp tüm operatörlerden 7777 numarasına mesaj gönderildiğinde, cep telefonunuza yer ve koordinatlar hakkında bilgi gelecektir.
