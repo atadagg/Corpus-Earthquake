@@ -292,7 +292,11 @@ public abstract class SentenceSplitter {
                             currentSentence.addWord(new Word(repeatControl(currentWord, webMode || emailMode)));
                         }
                         if (line.charAt(i) != '\n') {
-                            currentSentence.addWord(new Word("" + line.charAt(i)));
+                            if (webMode) {
+                                currentWord = currentWord + line.charAt(i);
+                            } else {
+                                currentSentence.addWord(new Word("" + line.charAt(i)));
+                            }
                         }
                         currentWord = "";
                         switch (line.charAt(i)) {
